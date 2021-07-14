@@ -15,7 +15,10 @@ namespace CustomList
         private List<List<T>> data;
         private int data_position = -1;
         private int list_position = -1;
-        
+        public long Count
+        {
+            get => (long)(1 + data_position) * (long)(1 + list_position);
+        }
         public CList(List<List<T>> data_)
         {
             data = data_;
