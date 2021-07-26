@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CList<T> 
+    class CList<T> : IEnumerable<T>
     {
         private int LIST_MAX_SIZE = 102400;
         private List<List<T>> data;
@@ -71,12 +71,32 @@ namespace CustomList
             }
         }
 
-
+        public void Clear()
+        {
+            foreach (var list in data)
+            {
+                list.Clear();
+            }
+            list_position = -1;
+            data_position = -1;
+        }
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < Count; ++i)
+            {
+                yield return this[i];
+            }
+        }
         public override int GetHashCode()
         {
             return base.GetHashCode();
