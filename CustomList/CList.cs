@@ -198,7 +198,9 @@ namespace CustomList
             if (this._data[real_index_1].Count == 0)
             {
                 this._data.RemoveAt(real_index_1);
+                --this._dataPosition;
             }
+            --this._listPosition;
         }
     }
 }
